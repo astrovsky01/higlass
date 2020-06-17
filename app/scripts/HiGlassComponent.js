@@ -3366,16 +3366,20 @@ class HiGlassComponent extends React.Component {
     if (!fromApi) {
       req
         .then(sharedView => {
-          this.openModal(
-            <ExportLinkDialog
-              onDone={() => {
-                this.closeModalBound();
-              }}
-              url={sharedView.url}
-            />
+          fetch(`${parsedUrl.origin}/t/?d=${sharedView.id}`, {
+            method: 'GET'
+          }).then(
+            this.openModal(
+              <ExportLinkDialog
+                onDone={() => {
+                  this.closeModalBound();
+                }}
+                url={'Sent to Galaxy'}
+              />
+            )
           );
         })
-        .catch(e => console.error('Exporting view config as link failed:', e));
+        .catch(e => console.error('Exporting view to galaxy failed:', e));
     }
 
     return req;

@@ -218,7 +218,7 @@ class ConfigViewMenu extends ContextMenuContainer {
 
         <hr styleName="context-menu-hr" />
 
-        <ContextMenuItem onClick={() => this.props.onExportSVG()}>
+        {/* <ContextMenuItem onClick={() => this.props.onExportSVG()}>
           {'Export views as SVG'}
         </ContextMenuItem>
 
@@ -228,10 +228,10 @@ class ConfigViewMenu extends ContextMenuContainer {
 
         <ContextMenuItem onClick={() => this.props.onExportViewAsJSON()}>
           {'Export views as JSON'}
-        </ContextMenuItem>
+        </ContextMenuItem> */}
 
         <ContextMenuItem onClick={() => this.props.onExportViewAsLink()}>
-          {'Export views as Link'}
+          {'Export views to Galaxy'}
         </ContextMenuItem>
 
         {this.getSubmenu()}

@@ -13,33 +13,8 @@ class ExportLinkDialog extends React.Component {
         okayOnly={true}
         okayTitle="Done"
         onOkay={this.props.onDone}
-        title="Share view link"
-      >
-        <div styleName="export-link-dialog-wrapper">
-          <input
-            ref={element => {
-              if (!element) return;
-              this.input = element;
-              element.focus();
-              element.select();
-            }}
-            onClick={event => {
-              event.target.select();
-            }}
-            placeholder="Generating the link..."
-            readOnly={true}
-            value={this.props.url}
-          />
-          <Button
-            onClick={event => {
-              this.input.select();
-              document.execCommand('copy');
-            }}
-          >
-            Copy
-          </Button>
-        </div>
-      </Dialog>
+        title="Image Exported to Galaxy"
+      ></Dialog>
     );
   }
 }
