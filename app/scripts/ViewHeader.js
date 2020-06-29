@@ -144,6 +144,10 @@ class ViewHeader extends React.Component {
               this.setState({ configMenuUid: null }); // hide the menu
               this.props.onExportViewsAsLink();
             }}
+            onImportDataFromGalaxy={() => {
+              this.setState({ configMenuUid: null }); // hide the menu
+              this.props.onImportsDataFromGalaxy();
+            }}
             onLockLocation={() => {
               this.setState({ configMenuUid: null }); // hide the menu
               this.props.onLockLocation(this.state.configMenuUid);
@@ -320,6 +324,7 @@ ViewHeader.propTypes = {
   onExportPNG: PropTypes.func.isRequired,
   onExportViewsAsJSON: PropTypes.func.isRequired,
   onExportViewsAsLink: PropTypes.func.isRequired,
+  onImportsDataFromGalaxy: PropTypes.func.isRequired,
   onLockLocation: PropTypes.func.isRequired,
   onLockZoom: PropTypes.func.isRequired,
   onLockZoomAndLocation: PropTypes.func.isRequired,

@@ -3333,6 +3333,34 @@ class HiGlassComponent extends React.Component {
     download('viewconf.json', data);
   }
 
+  handleImportsDataFromGalaxy(
+    url = this.state.viewConfig.exportViewUrl,
+    parsedUrl = new URL(url, window.location.origin),
+    datasetNumber = prompt(
+      'What dataset number would you like to import from your current history?'
+    )
+  ) {
+    async function galaxy() {
+      const type = await fetch(
+        `${parsedUrl.origin}/galaxy/?d=${datasetNumber}`,
+        { credentials: 'same-origin' }
+      ).then(response => response.json());
+      return type;
+    }
+    const galaxyRequest = galaxy().datatype;
+    if (galaxyRequest === 'cooler') {
+      const val = prompt('What resolution would you like to use?');
+      fetch(`${parsedUrl.origin}/galaxy/?d=${datasetNumber}&v=${val}`, {
+        credentials: 'same-origin'
+      });
+    } else if (galaxyRequest === 'bedgraph') {
+      const val = prompt('What number is your value column');
+      fetch(`${parsedUrl.origin}/galaxy/?d=${datasetNumber}&v=${val}`, {
+        credentials: 'same-origin'
+      });
+    }
+  }
+
   handleExportViewsAsLink(
     url = this.state.viewConfig.exportViewUrl,
     fromApi = false
@@ -3374,7 +3402,7 @@ class HiGlassComponent extends React.Component {
                 onDone={() => {
                   this.closeModalBound();
                 }}
-                url={'Sent to Galaxy'}
+                url="Sent to Galaxy"
               />
             )
           );
@@ -4714,6 +4742,9 @@ class HiGlassComponent extends React.Component {
               onExportSVG={this.handleExportSVG.bind(this)}
               onExportViewsAsJSON={this.handleExportViewAsJSON.bind(this)}
               onExportViewsAsLink={this.handleExportViewsAsLink.bind(this)}
+              onImportsDataFromGalaxy={this.handleImportsDataFromGalaxy.bind(
+                this
+              )}
               onLockLocation={uid =>
                 this.handleYankFunction(
                   uid,

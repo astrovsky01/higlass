@@ -230,6 +230,10 @@ class ConfigViewMenu extends ContextMenuContainer {
           {'Export views as JSON'}
         </ContextMenuItem> */}
 
+        <ContextMenuItem onClick={() => this.props.onImportDataFromGalaxy()}>
+          {'Import Data from Galaxy'}
+        </ContextMenuItem>
+
         <ContextMenuItem onClick={() => this.props.onExportViewAsLink()}>
           {'Export views to Galaxy'}
         </ContextMenuItem>
@@ -246,6 +250,7 @@ ConfigViewMenu.propTypes = {
   onExportPNG: PropTypes.func,
   onExportViewAsJSON: PropTypes.func,
   onExportViewAsLink: PropTypes.func,
+  onImportDataFromGalaxy: PropTypes.func,
   onLockLocation: PropTypes.func,
   onLockZoom: PropTypes.func,
   onLockZoomAndLocation: PropTypes.func,
